@@ -1,6 +1,6 @@
 <?php 
 	require_once 'db_connect.php';
-
+	// get updated data for specific animal
 	if ($_POST) {
 		$id = $_POST["id"];
 		$name = $_POST["name"];
@@ -12,7 +12,7 @@
 		$image = $_POST["image"];
 		$location = $_POST["location"];
 		$hobbies = $_POST["hobbies"];
-
+		// clean up
 		$name = mysqli_real_escape_string($conn, $name);
         $age = mysqli_real_escape_string($conn, $age);
         $species = mysqli_real_escape_string($conn, $species);
@@ -22,7 +22,7 @@
         $image = mysqli_real_escape_string($conn, $image);
         $location = mysqli_real_escape_string($conn, $location);
         $hobbies = mysqli_real_escape_string($conn, $hobbies);
-
+		// update animal in db
 		$sql = "UPDATE `animals` SET `name` = '$name', `age` = '$age', `species` = '$species', `breed` = '$breed', `size` = '$size', `description` = '$description', `image` = '$image', `location` = '$location', `hobbies` = '$hobbies' WHERE animal_id = $id";
 
 		if (mysqli_query($conn, $sql)) {

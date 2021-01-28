@@ -2,10 +2,11 @@
 	ob_start();
 	session_start();
 	require_once 'actions/db_connect.php';
-
+	// if user session is not empty redirect to index.php
 	if (isset($_SESSION['user'])!="") {
 		header("Location: index.php");
 		exit;
+	// if admin/superAdmin session is not empty redirect to admin index page
 	}elseif (isset($_SESSION['admin'])!="" || isset($_SESSION['superAdmin'])!="") {
 		header("Location: index_admin.php");
 		exit;
@@ -14,7 +15,7 @@
 	$error = false;
 	
 	if (isset($_POST['btn-login'])) {
-		// prevent sql injections/ clear user invalid inputs
+		// prevent sql injections | clear invalid inputs
 		$email = trim($_POST['email']);
 		$email = strip_tags($email);
 		$email = htmlspecialchars($email);
@@ -23,7 +24,7 @@
 		$pass = strip_tags($pass);
 		$pass = htmlspecialchars($pass);
 
-		// prevent sql injections / clear user invalid inputs
+		// prevent sql injections | clear invalid inputs
 		if(empty($email)){
 			$error = true;
 		  	$emailError = "Please enter your email address.";

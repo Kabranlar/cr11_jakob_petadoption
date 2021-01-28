@@ -49,14 +49,14 @@
 
 	       	<?php
 				include ("actions/db_connect.php");
-
+		  		// get animals that are 8 or younger
 				$sql = "SELECT * FROM animals WHERE age <= 8";
 				$result = mysqli_query($conn, $sql);
 				$conn->close();
 
 				if($result->num_rows > 0) {
 	                while($row = $result->fetch_assoc()) {
-
+					// print young animals
 	                echo "
 	                <div class='card col-sm-8 col-md-5 col-xl-3 m-4'>
 	                	<img class='card-img-top mt-4 mx-auto' src='" . $row['image'] . "' style='height: 300px; object-fit:contain' alt='Card image cap'>

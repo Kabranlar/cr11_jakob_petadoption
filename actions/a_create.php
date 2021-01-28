@@ -1,6 +1,6 @@
 <?php
 	require_once 'db_connect.php';
-
+	// get data from create form
 	if ($_POST) {
 		$name = $_POST["name"];
 		$age = $_POST["age"];
@@ -11,7 +11,7 @@
 		$image = $_POST["image"];
 		$location = $_POST["location"];
 		$hobbies = $_POST["hobbies"];
-
+		// clean up data
 		$name = mysqli_real_escape_string($conn, $name);
         $age = mysqli_real_escape_string($conn, $age);
         $species = mysqli_real_escape_string($conn, $species);
@@ -21,9 +21,9 @@
         $image = mysqli_real_escape_string($conn, $image);
         $location = mysqli_real_escape_string($conn, $location);
         $hobbies = mysqli_real_escape_string($conn, $hobbies);
-
+		// insert new animal in db
 		$sql = "INSERT INTO animals(name, age, species, breed, size, description, image, location, hobbies) VALUES ('$name', '$age', '$species', '$breed', '$size', '$description', '$image', '$location', '$hobbies')";
-
+		
 		if(mysqli_query($conn, $sql)) {
 			echo "success <br><a href='../index.php'>Back to the home page</a>";
 		} else {

@@ -8,7 +8,7 @@
  		header("Location: index.php");
 	 	exit;
 	}
-	// select logged-in users details
+	// select logged-in admin details
 	if (isset($_SESSION['admin'])) {
 		$res=mysqli_query($conn, "SELECT * FROM users WHERE userId=".$_SESSION['admin']);
 	}elseif (isset($_SESSION['superAdmin'])) {
@@ -50,8 +50,9 @@
 	</nav>
 
 	<div class="container-fluid mb-4">
+		<!-- btn to add an animal -->
 	   	<a href= "create.php"><button class="btn btn-success mb-4" type="button">Add Animal</button></a>
-
+		<!-- holds animal cards -->
 		<div class ="row d-flex justify-content-center">
 
 	       	<?php
@@ -62,6 +63,7 @@
 				$conn->close();
 
 				if($result->num_rows > 0) {
+					// print animal cards
 	                while($row = $result->fetch_assoc()) {
 
 	                echo "
@@ -88,7 +90,7 @@
 	           	}
 			?>
 		</div>
-
+		<!-- if user is not superadmin do not display user section | else superAdmin can see users and edit/delete them -->
 		<div <?php if (!isset($_SESSION['superAdmin'])) {
 			echo "style='display:none;'";
 		} ?>>

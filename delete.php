@@ -1,6 +1,6 @@
 <?php
 	require_once 'actions/db_connect.php';
-
+   // get animal to be deleted
    if($_GET['animal_id']) {
       $animal_id = $_GET['animal_id'];
 
@@ -9,6 +9,7 @@
       $row = $result->fetch_assoc();
 
       $conn->close();
+   // get user to be deleted
    }elseif($_GET["userId"]) {
       $userId = $_GET["userId"];
       $sql = "SELECT * FROM users WHERE userId = $userId";

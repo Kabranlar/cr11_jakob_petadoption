@@ -23,13 +23,14 @@
 
 	       	<?php
 				include ("actions/db_connect.php");
+				// get animal details
 				if ($_GET["animal_id"]) {
 				    $animal_id = $_GET["animal_id"];
 				    $sql = "SELECT * FROM animals WHERE animal_id = $animal_id";
 				    $result = mysqli_query($conn, $sql);
 				    $row = $result->fetch_assoc();
 				}
-
+				// print details
 			 	echo "
 			 	<div class='card col-6 mt-5 mx-auto'>
 	                <img class='card-img-top mt-4 mx-auto' src='" . $row['image'] . "' style='width: 200px; object-fit:contain' alt='Card image cap'>

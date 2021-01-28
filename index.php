@@ -18,9 +18,8 @@
 	}elseif (isset($_SESSION['superAdmin'])) {
 		$res=mysqli_query($conn, "SELECT * FROM users WHERE userId=".$_SESSION['superAdmin']);
 	}
+	//holds current user details
 	$userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
-	/*var_dump($userRow);
-	echo $userRow['userName'];*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,6 +34,7 @@
 </head>
 
 <body class="bg-secondary">
+	<!-- nav element -->
 	<nav class="navbar navbar-light bg-light mb-5">
   		<form class="form-inline">
   			<a class="navbar-brand" href="index.php">
@@ -55,19 +55,23 @@
   		} ?>
 	</nav>
 
+	<!-- holds pet cards -->
 	<div class="container-fluid mb-4">
 		<div class ="row d-flex justify-content-center">
 
 	       	<?php
+			   	// include to work with db connection
 				include ("actions/db_connect.php");
-
+		  		// holds sql query
 				$sql = "SELECT * FROM animals";
+				// result is saved
 				$result = mysqli_query($conn, $sql);
 				$conn->close();
 
+				// if result is not empty
 				if($result->num_rows > 0) {
+					// display pet cards
 	                while($row = $result->fetch_assoc()) {
-
 	                echo "
 	                <div class='card col-sm-8 col-md-5 col-xl-3 m-4'>
 	                	<img class='card-img-top mt-4 mx-auto' src='" . $row['image'] . "' style='height: 300px; object-fit:contain' alt='Card image cap'>
